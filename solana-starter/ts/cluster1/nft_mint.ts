@@ -5,7 +5,7 @@ import { createNft, mplTokenMetadata } from "@metaplex-foundation/mpl-token-meta
 import wallet from "./wallet/turbin3_wallet.json"
 import base58 from "bs58";
 
-const RPC_ENDPOINT = "https://devnet.helius-rpc.com/?api-key=71d05d9f-5d94-4548-9137-c6c3d9f69b3e";
+const RPC_ENDPOIsolana-starterNT = "https://devnet.helius-rpc.com/?api-key=71d05d9f-5d94-4548-9137-c6c3d9f69b3e";
 const umi = createUmi(RPC_ENDPOINT);
 
 let keypair = umi.eddsa.createKeypairFromSecretKey(new Uint8Array(wallet));
