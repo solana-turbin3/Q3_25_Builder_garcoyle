@@ -5,6 +5,8 @@ use anchor_spl::{
     token_interface::{Mint, TokenAccount, TokenInterface, TransferChecked}
 };
 
+use crate::state::Escrow;
+
 #[derive(Accounts)]
 #[instruction(seed: u64)]
 pub struct Make<'info> {
@@ -58,7 +60,7 @@ impl<'info> Make<'info>{
                 mint_a: self.mint_a.key(),
                 mint_b: self.mint_b.key(),
                 recieve,
-                bump: bumps.escrow
+                bump: bumps.escrow,
 
             }
         );
@@ -66,8 +68,14 @@ impl<'info> Make<'info>{
     }
 
     pub fn deposit(&mut self, deposit: u64) -> Result<()> {
-        let transfer_accounts: 
+        let transfer_accounts = TransferChecked{
+            from: self.maker_ata_a.to_account_info(),
+            mint: self.mint_a.to_account_info(),
+            to: self.vault.to_account_info(),
+            authority: self.maker.to_account_info(),
+        }
         
+        let cpi_ctx = CpiContext::new(self.token_program.to_account_info(), transfer_accounts)?;
         Ok(())
     }
 }
