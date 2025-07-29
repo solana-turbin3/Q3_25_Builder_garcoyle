@@ -1,0 +1,27 @@
+import * as anchor from "@coral-xyz/anchor";
+import { Program } from "@coral-xyz/anchor";
+import { AnchorEscrow } from "../target/types/anchor_escrow";
+
+describe("anchor-escrow", () => {
+  // Configure the client to use the local cluster.
+  anchor.setProvider(anchor.AnchorProvider.env());
+
+  const program = anchor.workspace.anchorEscrow as Program<AnchorEscrow>;
+  
+  const programID = program.programID;
+
+  const comfirm = async (signature: string): Promise<string> => {
+    const block = await connection.getLatestBlockhash();
+    await connection.confirmTransaction({
+      signature,
+      ...block
+    });
+    return signature
+}
+    
+  it("Is initialized!", async () => {
+    // Add your test here.
+    const tx = await program.methods.initialize().rpc();
+    console.log("Your transaction signature", tx);
+  });
+});

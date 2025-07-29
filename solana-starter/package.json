@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@types/connect": "^3.4.38",
+    "@types/node": "^24.0.10",
+    "@types/prompt": "^1.1.9",
+    "@types/ws": "^8.18.1"
+  }
+}
