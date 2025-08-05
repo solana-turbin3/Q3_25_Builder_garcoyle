@@ -1,11 +1,9 @@
-mod state;
-
 use anchor_lang::prelude::*;
 
-declare_id!("31QevmMYhUm7KiF5VfRoxpEoKY4FsnUCHCyYmEKvg47E");
+declare_id!("BTCMgGJycDNs5PYfB7DaWazvtXZr5TfwHquvu7qWXQHp");
 
 #[program]
-pub mod capstone {
+pub mod lay_escrow {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
