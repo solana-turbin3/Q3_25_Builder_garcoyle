@@ -11,7 +11,7 @@ pub struct Initialize<'info>{
     #[account(
         init,
         payer = user,
-        seeds = [b"user_analysis", user.key().as_ref()],
+        seeds = [b"user_account", user.key().as_ref()],
         bump,
         space = 8 + UserAccount::INIT_SPACE,
 
@@ -21,9 +21,13 @@ pub struct Initialize<'info>{
 }
 
 impl<'info> Initialize<'info> {
-    pub fn initialize(&mut self, _bumps: &InitializeBumps) -> Result<()> {
+    pub fn initialize(&mut self, bumps: &InitializeBumps) -> Result<()> {
         self.user_account.user = self.user.key();
-        self.user_account.analyses = Vec::new();
+        // self.user_account.analyses = Vec::new();
+        //self.user_account.analyses = vec![];
+        self.user_account.bump = bumps.user_account;
         Ok(())
     }
 }
+
+// seeds = [b"analysis", seed.to_le_bytes().as_ref() + user_account.key.as_ref()
